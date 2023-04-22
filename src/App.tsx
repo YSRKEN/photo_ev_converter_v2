@@ -174,19 +174,26 @@ const SettingSlider = ({ label, values, value, setValue }: {
 
 }
 
-const App = () => {
+const EvFormGroup = () => {
 
   const [fValue, setFValue] = useState(18)
   const [tValue, setTValue] = useState(27)
   const [isoValue, setIsoValue] = useState(0)
   const [evValue, setEvValue] = useState(0)
 
-  console.group('Debug')
-  console.log('F値', fValue)
-  console.log('シャッタースピード', tValue)
-  console.log('ISO感度', isoValue)
-  console.log('EV', Math.round((fValue + tValue - isoValue - evValue) / 3 * 10) / 10)
-  console.groupEnd()
+  return <Form.Group className="border border-3 p-3 my-3">
+    <h4>{
+      Math.round((fValue + tValue - isoValue - evValue) / 3 * 10) / 10
+    }EV</h4>
+    <SettingSlider label="F値" values={AV_LIST} value={fValue} setValue={setFValue} />
+    <SettingSlider label="シャッタースピード" values={TV_LIST} value={tValue} setValue={setTValue} />
+    <SettingSlider label="ISO感度" values={ISO_LIST} value={isoValue} setValue={setIsoValue} />
+    <SettingSlider label="EV補正値" values={EV_LIST} value={evValue} setValue={setEvValue} />
+  </Form.Group>
+
+}
+
+const App = () => {
 
   return <Container>
     <Row className="my-3">
@@ -197,15 +204,8 @@ const App = () => {
     <Row className="my-3">
       <Col>
         <Form>
-          <Form.Group className="border border-3 p-3">
-            <h4>{
-              Math.round((fValue + tValue - isoValue - evValue) / 3 * 10) / 10
-            }EV</h4>
-            <SettingSlider label="F値" values={AV_LIST} value={fValue} setValue={setFValue} />
-            <SettingSlider label="シャッタースピード" values={TV_LIST} value={tValue} setValue={setTValue} />
-            <SettingSlider label="ISO感度" values={ISO_LIST} value={isoValue} setValue={setIsoValue} />
-            <SettingSlider label="EV補正値" values={EV_LIST} value={evValue} setValue={setEvValue} />
-          </Form.Group>
+          <EvFormGroup />
+          <EvFormGroup />
         </Form>
       </Col>
     </Row>
