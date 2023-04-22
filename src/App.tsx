@@ -106,7 +106,7 @@ const SettingSlider = ({ label, values, value, setValue }: {
   })
 
   return <Form.Group>
-    <Form.Label className="fw-bold">{label}</Form.Label>
+    <Form.Label className="fw-bold">{label} ({values[index].label})</Form.Label>
     <Form.Range min="0" max={values.length - 1} value={index} onChange={(e) => {
       const i = parseInt(e.target.value)
       setIndex(i)
