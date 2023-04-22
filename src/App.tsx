@@ -159,7 +159,7 @@ const SettingSlider = ({ label, values, value, setValue }: {
     return temp.length > 0 ? values.indexOf(temp[0]) : 0
   })
 
-  return <Form.Group>
+  return <>
     <div className="d-flex justify-content-between">
       <Form.Label>{values[0].label}</Form.Label>
       <Form.Label className="fw-bold">{label} ({values[index].label})</Form.Label>
@@ -170,7 +170,7 @@ const SettingSlider = ({ label, values, value, setValue }: {
       setIndex(i)
       setValue(values[i].value)
     }} />
-  </Form.Group>
+  </>
 
 }
 
@@ -196,22 +196,17 @@ const App = () => {
     </Row>
     <Row className="my-3">
       <Col>
-        <SettingSlider label="F値" values={AV_LIST} value={fValue} setValue={setFValue} />
-      </Col>
-    </Row>
-    <Row className="my-3">
-      <Col>
-        <SettingSlider label="シャッタースピード" values={TV_LIST} value={tValue} setValue={setTValue} />
-      </Col>
-    </Row>
-    <Row className="my-3">
-      <Col>
-        <SettingSlider label="ISO感度" values={ISO_LIST} value={isoValue} setValue={setIsoValue} />
-      </Col>
-    </Row>
-    <Row className="my-3">
-      <Col>
-        <SettingSlider label="EV補正値" values={EV_LIST} value={evValue} setValue={setEvValue} />
+        <Form>
+          <Form.Group className="border border-3 p-3">
+            <h4>{
+              Math.round((fValue + tValue - isoValue - evValue) / 3 * 10) / 10
+            }EV</h4>
+            <SettingSlider label="F値" values={AV_LIST} value={fValue} setValue={setFValue} />
+            <SettingSlider label="シャッタースピード" values={TV_LIST} value={tValue} setValue={setTValue} />
+            <SettingSlider label="ISO感度" values={ISO_LIST} value={isoValue} setValue={setIsoValue} />
+            <SettingSlider label="EV補正値" values={EV_LIST} value={evValue} setValue={setEvValue} />
+          </Form.Group>
+        </Form>
       </Col>
     </Row>
   </Container>
