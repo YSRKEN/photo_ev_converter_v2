@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "mft-db-tool"
+  },
+  "targets": {
+    "mft-db-tool": {
+      "hosting": {
+        "photo-ev-converter-v2": [
+          "photo-ev-converter-v2"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
